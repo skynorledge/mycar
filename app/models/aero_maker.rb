@@ -1,0 +1,2 @@
+class AeroMaker < ApplicationRecord
+end
