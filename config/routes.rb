@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   namespace :admin do
 
     root to: 'homes#top'
-    get '/admin' => "homes#top",as: "admin"
 
     resources :comments,only: [:destroy]
     resources :cars,only: [:show,:destroy]
