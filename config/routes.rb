@@ -22,4 +22,18 @@ Rails.application.routes.draw do
 
   end
 
+  scope module: :user do
+
+    get '/mypage' => "users#show"
+    get '/info/edit' => "users#edit"
+    get '/confirm' => 'users#confirm'
+    patch '/withdrawal' => 'users#withdrawal'
+
+    resources :infos,only: [:update]
+    resources :likes,only: [:index,:create,:destroy]
+    resources :comments,only: [:create,:destroy]
+    resources :cars,only: [:create,:destroy,:new,:edit,:update,:index,:show]
+
+  end
+
 end
