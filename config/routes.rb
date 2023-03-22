@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'homes/top'
   devise_for :admin,skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
@@ -11,5 +10,16 @@ Rails.application.routes.draw do
   }
 
   root to: 'homes#top'
+
+  namespace :admin do
+
+    root to: 'homes#top'
+    get '/admin' => "homes#top",as: "admin"
+
+    resources :comments,only: [:destroy]
+    resources :cars,only: [:show,:destroy]
+    resources :users,only: [:index,:show,:update]
+
+  end
 
 end
