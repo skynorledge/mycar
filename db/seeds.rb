@@ -33,3 +33,16 @@ AeroMaker.create!([
     {aero_maker_name: "その他"},
     {aero_maker_name: "なし"},
 ])
+
+Tag.create!([
+    {tag_name: "日本車"},
+    {tag_name: "外車"},
+    {tag_name: "スポーツカー"},
+    {tag_name: "コンパクトカー"},
+    {tag_name: "SUV"},
+    {tag_name: "ミニバン"},
+    {tag_name: "エアロ装備有"},
+    {tag_name: "FF"},
+    {tag_name: "FR"},
+    {tag_name: "4WD"},
+])
