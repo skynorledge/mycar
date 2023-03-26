@@ -8,7 +8,7 @@ class User::SessionsController < Devise::SessionsController
 
     def after_sign_in_path_for(_resource)
 
-      "/"
+      mypage_path(@user)
 
     end
 
@@ -25,7 +25,7 @@ class User::SessionsController < Devise::SessionsController
       return if !@user
       if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == true)
       redirect_to new_user_registration_path
-    end
+      end
 
     end
 
