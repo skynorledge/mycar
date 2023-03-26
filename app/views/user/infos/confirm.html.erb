@@ -1,2 +1,31 @@
-<h1>User::Infos#confirm</h1>
-<p>Find me in app/views/user/infos/confirm.html.erb</p>
+<center>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<h4>本当に退会しますか？</h4>
+
+<br>
+<br>
+
+<p>退会すると、会員登録情報や</p>
+<p>これまでの購入履歴が閲覧できなくなります。</p>
+<p>退会する場合は、「退会する」をクリックしてください。</p>
+
+<br>
+<br>
+
+<%= link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" } , class:"btn btn-danger" %>
+
+&emsp;&emsp;&emsp;
+
+<%= link_to "退会しない", mypage_path(current_user) , class:"btn btn-primary" %>
+
+
+</center>

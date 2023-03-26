@@ -1,2 +1,48 @@
-<h1>User::Infos#edit</h1>
-<p>Find me in app/views/user/infos/edit.html.erb</p>
+<div class = "container">
+
+  <div class = "row mt-3 mb-3">
+
+    <h5>会員情報編集</h5>
+
+  </div>
+
+    <div class = "row mt-3 mb-3">
+
+    <%= form_with model: @user,url:mypage_path(current_user),method: :PATCH do |f| %>
+
+    <table class = "table">
+
+      <tr><th><%= f.label :ユーザー名 %></th><td><%= f.text_field :name%></td></tr>
+
+      <tr><th><%= f.label :自己紹介 %></th><td><%= f.text_area :introduction,size: "60×50" %></td></tr>
+
+      <tr><th><%= f.label :プロフィール画像 %></th><td><%= f.file_field :profile_image, accept: "image/*" %></td></tr>
+
+      <tr><th><%= f.label :メールアドレス %></th><td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td></tr>
+
+      <tr><th><%= f.label :パスワード %></th><td>
+        <% if @minimum_password_length %>
+        <em>（<%= @minimum_password_length %>文字以上）</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </td></tr>
+
+      <tr><th><%= f.label :パスワード（確認用） %></th><td>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </td></tr>
+
+
+    </table>
+
+    </div>
+
+    <div class = "row mt-3 mb-3">
+      <div class = col-md-6>
+        <%= f.submit '編集内容を保存' ,class:"btn btn-success btn-sm" %>
+      </div>
+    <!--&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-->
+
+    <% end %>
+
+  </div>
+<div>

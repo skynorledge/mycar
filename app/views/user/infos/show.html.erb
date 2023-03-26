@@ -55,9 +55,9 @@
           <div class = "col-md-2">
             <h5 class="font-weight-bold">退会</h5>
           </div>
-          <div class = "col-md-10">
-            <%#= link_to "退会処理",orders_path,class:"btn btn-primary btn-sm" %>
-          </div>
+           <div class = col-md-4>
+             <%= link_to "退会する",confirm_path(current_user), class:"btn btn-danger btn-sm" %>
+           </div>
 
         </div>
 
