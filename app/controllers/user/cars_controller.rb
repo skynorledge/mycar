@@ -20,7 +20,7 @@ class User::CarsController < ApplicationController
 
     @car.save
 
-    redirect_to car_path(@car)
+    redirect_to car_path(@car.id)
 
   end
 

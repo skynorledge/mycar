@@ -4,7 +4,7 @@ class User::InfosController < ApplicationController
 
   def confirm
 
-    @user = current_customer
+    @user = current_user
 
   end
 
@@ -37,11 +37,15 @@ class User::InfosController < ApplicationController
     @user = current_user
     @user.update(user_params)
 
-    @user.save
+    if @user.save
 
     flash[:notice] = "会員情報を更新しました"
 
     redirect_to mypage_path
+
+    else
+      render :edit
+    end
 
   end
 
