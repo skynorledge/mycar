@@ -23,12 +23,12 @@ Rails.application.routes.draw do
 
   scope module: :user do
 
-    #get '/mypage' => "users#show"
-    get '/info/edit' => "users#edit"
-    get '/confirm' => 'users#confirm'
-    patch '/withdrawal' => 'users#withdrawal'
+    get '/mypage' => "infos#show"
+    get '/info/edit' => "infos#edit"
+    get '/confirm' => 'infos#confirm'
+    patch '/withdrawal' => 'infos#withdrawal'
 
-    resources :infos,only: [:update,:show]
+    resources :infos,only: [:update]
     resources :likes,only: [:index,:create,:destroy]
 
     resources :cars,only: [:create,:destroy,:new,:edit,:update,:index,:show] do
