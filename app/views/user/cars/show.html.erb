@@ -1,31 +1,71 @@
-<div>
-  <%= image_tag @car.user.get_profile_image(100,100) %>
-  <p>投稿ユーザー名：<%= @car.user.name %></p>
-  <p>メーカー：<%= @car.maker.maker_name %></p>
-  <p>エアロメーカー：<%= @car.aero_maker.aero_maker_name %></p>
-  <p>車種：<%= @car.car_model %></p>
-  <p>タイトル：<%= @car.title %></p>
-  <p>投稿ユーザー画像：<%= image_tag @car.get_car_image(100,100) %></p>
-  <p>本文：<%= @car.body %></p>
-  <p>投稿日時：<%= @car.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @car.user == current_user %>
-    <%= link_to "編集", edit_car_path(@car) %>
-    <%= link_to "削除", car_path(@car), method: :delete %>
-  <% end %>
-</div>
 
-<div>
-  <p>コメント件数：<%= @car.comments.count %></p>
-  <% @car.comments.each do |comment| %>
-    <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
-    <%= comment.user.name %>
-    <%= comment.comment_body %>
-    <%#= comment.created_at.strftime('%Y/%m/%d') %><%#= comment.comment %>
-  <% end %>
-</div>
-<div>
-  <%= form_with model: [@car, @comment] do |f| %>
-    <%= f.text_area :comment_body, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
-</div>
+
+        <div class="card-deck">
+
+          <div class="card border border-0 mt-3 mb-3">
+
+            <div class="card-body">
+
+              <p class="card-text">投稿ユーザー：<%= @car.user.name %></p>
+              <br><br>
+              <p class="card-text">メーカー：<%= @car.maker.maker_name %></p>
+              <br><br>
+              <p class="card-text">エアロメーカー：<%= @car.aero_maker.aero_maker_name %></p>
+              <br><br>
+              <p class="card-text">車種：<%= @car.car_model %></p>
+              <br><br>
+              <p class="card-text">投稿日時：<%= @car.created_at.strftime('%Y/%m/%d') %></p>
+              <br><br>
+              <% if @car.user == current_user %>
+                <%= link_to "編集", edit_car_path(@car),class:"btn btn-success" %>&emsp;&emsp;&emsp;&emsp;
+                <%= link_to "削除", car_path(@car),class:"btn btn-danger", method: :delete,"data-confirm" => "本当に消しますか？" %>
+              <% end %>
+
+            </div>
+
+          </div>
+
+          <div class="card border border-0 mt-3 mb-3">
+
+            <div class="card-body text-center">
+
+              <!--<h4 class="card-title">投稿詳細</h4>-->
+              <p class="card-text"><%= image_tag @car.get_car_image(400,500) %></p>
+              <p class="card-text">タイトル：<%= @car.title %></p>
+              <p class="card-text"><%= @car.body %></p>
+
+            </div>
+
+          </div>
+
+          <div class="card border border-0 mt-3 mb-3">
+
+            <div class="card-body text-center">
+
+              <div>
+
+                <p class="card-text">コメント件数：<%= @car.comments.count %></p>
+                <% @car.comments.each do |comment| %>
+                <!--<p class="card-text"><%#= image_tag comment.user.get_profile_image(100,100) %></p>-->
+                <p class="card-text text-primary"><%= comment.user.name %></p>
+                <p class="card-text text-success"><%= comment.comment_body %></p>
+                <%#= comment.created_at.strftime('%Y/%m/%d') %><%#= comment.comment %>
+                <% end %>
+
+              </div>
+
+              <div>
+
+                <%= form_with model: [@car, @comment] do |f| %><br>
+                <%= f.text_area :comment_body, rows: '5', placeholder: "コメント記入欄" %><br><br>
+                <%= f.submit "送信する" %>
+                <% end %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+            <%#= image_tag @car.user.get_profile_image(100,100) %>

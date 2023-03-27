@@ -1,2 +1,45 @@
-<h1>User::Cars#index</h1>
-<p>Find me in app/views/user/cars/index.html.erb</p>
+<div class = "container">
+
+  <div class = "row mt-3 mb-3">
+    <div class = "col">
+      <h4>投稿一覧</h4>
+    </div>
+  </div>
+
+
+    <div class = "row mt-3 mb-3">
+
+      <% @cars.each do |car| %>
+
+        <div class = "col-md-3">
+
+          <table class = "table table-borderless">
+            <thead>
+              <tr>
+                <th colspan="1"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+
+                <td><%= image_tag car.get_car_image(100,100) %><br>
+                <%= link_to car.user.name,car_path(car.id) %><br>
+                <%= car.maker.maker_name %><br>
+                <%= car.aero_maker.aero_maker_name %><br>
+                <%= car.car_model %></td>
+
+              </tr>
+
+             </tbody>
+          </table>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+</div>
+

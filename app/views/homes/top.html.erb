@@ -1,102 +1,118 @@
-<div class = "container mt-3 mb-3">
+<!--<div class = "container mt-3 mb-3">-->
 
-  <div class="card-deck">
+  <!--<div class="row">-->
 
-    <div class="card border border-0">
+    <!--<div class="col-md-2">-->
 
-      <div class="card-body">
+      <div class="card-deck">
 
-        <h4 class="card-title">メーカー</h4>
-        <p class="card-text">TOYOTA</p>
-        <p class="card-text">NISSAN</p>
-        <p class="card-text">HONDA</p>
-        <p class="card-text">MAZDA</p>
-        <p class="card-text">SUBARU</p>
-        <p class="card-text">MITSUBISHI</p>
-        <p class="card-text">SUZUKI</p>
+        <div class="card border border-0 mt-3 mb-3">
 
-        <h4 class="card-title">エアロパーツメーカー</h4>
-        <p class="card-text">admiration</p>
-        <p class="card-text">AIMGAIN</p>
-        <p class="card-text">AMS</p>
-        <p class="card-text">ARTISAN SPIRITS</p>
-        <p class="card-text">TOMS</p>
-        <p class="card-text">TRD</p>
-        <p class="card-text">CRAVE</p>
-        <p class="card-text">その他</p>
+          <div class="card-body">
+
+            <h4 class="card-title">メーカー</h4>
+            <p class="card-text">TOYOTA</p>
+            <p class="card-text">NISSAN</p>
+            <p class="card-text">HONDA</p>
+            <p class="card-text">MAZDA</p>
+            <p class="card-text">SUBARU</p>
+            <p class="card-text">MITSUBISHI</p>
+            <p class="card-text">SUZUKI</p>
+
+            <h4 class="card-title">エアロパーツメーカー</h4>
+            <p class="card-text">admiration</p>
+            <p class="card-text">AIMGAIN</p>
+            <p class="card-text">AMS</p>
+            <p class="card-text">ARTISAN SPIRITS</p>
+            <p class="card-text">TOMS</p>
+            <p class="card-text">TRD</p>
+            <p class="card-text">CRAVE</p>
+            <p class="card-text">その他</p>
+
+          </div>
+
+        </div>
+
+    <!--</div>-->
+
+    <!--<div class="col-md-2">-->
+
+        <div class="card border border-0 mt-3 mb-3">
+
+          <div class="card-body">
+
+            <p class="card-text">ようこそprecious carへ！</p>
+            <p class="card-text">このサイトは皆さんの愛車との思い出を投稿し</p>
+            <p class="card-text">投稿者同士で交流ができる場所です。</p>
+            <p class="card-text">きっかけ、自慢したい所、こだわり、思い出</p>
+            <p class="card-text">それ以外のことでも車に関することなら</p>
+            <p class="card-text">なんでも投稿してください！</p>
+
+          </div>
+
+          <div class="card-body">
+
+            <table class = "table table-bordered">
+              <thead>
+                <tr>
+                  <th colspan="1"></th>
+                  <th>ユーザー名</th>
+                  <th>メーカー</th>
+                  <th>エアロメーカー</th>
+                  <th>車種</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                <% @cars.each do |car| %>
+
+                <tr>
+
+                  <td><%= image_tag car.user.get_profile_image(100,100) %></td>
+
+                  <td><%= car.user.name %></td>
+
+                  <td><%= car.maker.maker_name %></td>
+
+                  <td><%= car.aero_maker.aero_maker_name %></td>
+
+                  <td><%= car.car_model %></td>
+
+                </tr>
+
+                <% end %>
+
+
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+
+    <!--</div>-->
+
+    <!--<div class="col-md-2">-->
+
+        <div class="card border border-0 mt-3 mb-3">
+
+          <div class="card-body">
+
+            <h4 class="card-title">管理者プロフィール</h4>
+            <p class="card-text">画像</p>
+            <p class="card-text">タイトル</p>
+            <p class="card-text">自己紹介</p>
+            <p class="card-text">本文</p>
+
+          </div>
+
+        </div>
 
       </div>
 
-    </div>
+    <!--</div>-->
 
-    <div class="card border border-0">
+  <!--</div>-->
 
-      <div class="card-body">
-
-        <p class="card-text">ようこそprecious carへ！</p>
-        <p class="card-text">このサイトは皆さんの愛車との思い出を投稿し</p>
-        <p class="card-text">投稿者同士で交流ができる場所です。</p>
-        <p class="card-text">きっかけ、自慢したい所、こだわり、思い出</p>
-        <p class="card-text">それ以外のことでも車に関することなら</p>
-        <p class="card-text">なんでも投稿してください！</p>
-
-      </div>
-
-      <div class="card-body">
-
-        <table class = "table table-bordered">
-          <thead>
-            <tr>
-              <th>画像</th>
-              <th>ユーザー名</th>
-              <th>メーカー</th>
-              <th>エアロメーカー</th>
-              <th>車種</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            <%# @cars.each do |car| %>
-
-            <tr>
-
-              <td></td>
-
-              <td></td>
-
-              <td></td>
-
-              <td></td>
-
-              <td></td>
-
-            </tr>
-
-            <%# end %>
-
-
-          </tbody>
-        </table>
-
-      </div>
-
-    </div>
-
-    <div class="card border border-0">
-
-      <div class="card-body">
-
-        <h4 class="card-title">管理者プロフィール</h4>
-        <p class="card-text">画像</p>
-        <p class="card-text">タイトル</p>
-        <p class="card-text">自己紹介</p>
-        <p class="card-text">本文</p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
+<!--</div>-->
