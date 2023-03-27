@@ -5,7 +5,7 @@ class User::CommentsController < ApplicationController
     comment = current_user.comments.new(comment_params)
     comment.car_id = car.id
     comment.save
-    redirect_to post_image_path(car)
+    redirect_to car_path(car)
   end
 
   private
