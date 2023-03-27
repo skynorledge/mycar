@@ -16,11 +16,15 @@ class User::CarsController < ApplicationController
 
   def create
 
+    @car = current_user
+
     @car = Car.new(car_params)
+
+    @car.user_id = current_user.id
 
     @car.save
 
-    redirect_to car_path(@car.id)
+    redirect_to car_path(@car)
 
   end
 
@@ -51,7 +55,7 @@ class User::CarsController < ApplicationController
 
     def car_params
       params.require(:car).permit(:user_id,:maker_id,:aero_maker_id,:car_image,
-      :title,:body,:maker_comment,:aero_maker_comment,:car_model)
+      :profile_image,:title,:body,:maker_comment,:aero_maker_comment,:car_model,:created_at)
     end
 
 end
