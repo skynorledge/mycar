@@ -1,6 +1,7 @@
 class Car < ApplicationRecord
 
   has_one_attached :car_image
+  has_one_attached :profile_image
 
   belongs_to :user
   belongs_to :maker
@@ -11,5 +12,14 @@ class Car < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+
+  def get_car_image(width, height)
+    unless car_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      car_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+      car_image.variant(resize_to_limit: [width, height]).processed
+  end
+
 
 end
