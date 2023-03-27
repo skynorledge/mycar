@@ -1,11 +1,11 @@
 <div>
-  <%= image_tag @car.get_car_image %>
+  <%= image_tag @car.user.get_profile_image(100,100) %>
   <p>投稿ユーザー名：<%= @car.user.name %></p>
   <p>メーカー：<%= @car.maker.maker_name %></p>
   <p>エアロメーカー：<%= @car.aero_maker.aero_maker_name %></p>
   <p>車種：<%= @car.car_model %></p>
   <p>タイトル：<%= @car.title %></p>
-  <p>投稿ユーザー画像：<%= image_tag @car.user.get_profile_image(100,100) %></p>
+  <p>投稿ユーザー画像：<%= image_tag @car.get_car_image(100,100) %></p>
   <p>本文：<%= @car.body %></p>
   <p>投稿日時：<%= @car.created_at.strftime('%Y/%m/%d') %></p>
   <% if @car.user == current_user %>
@@ -19,7 +19,8 @@
   <% @car.comments.each do |comment| %>
     <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
     <%= comment.user.name %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+    <%= comment.comment_body %>
+    <%#= comment.created_at.strftime('%Y/%m/%d') %><%#= comment.comment %>
   <% end %>
 </div>
 <div>
