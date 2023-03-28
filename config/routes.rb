@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   scope module: :user do
 
     get '/mypage' => "infos#show"
+    patch '/mypage' => 'infos#update'
     get '/info/edit' => "infos#edit"
     get '/confirm' => 'infos#confirm'
     patch '/withdrawal' => 'infos#withdrawal'
