@@ -51,6 +51,15 @@ class User::CarsController < ApplicationController
 
   end
 
+  def destroy
+
+    car = Car.find(params[:id])
+    car.destroy
+    flash[:notice] = "投稿を削除しました"
+    redirect_to cars_path
+
+  end
+
   private
 
     def car_params
