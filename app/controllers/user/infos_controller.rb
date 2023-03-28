@@ -37,31 +37,22 @@ class User::InfosController < ApplicationController
     @user = current_user
     @user.update(user_params)
 
-    if @user.save
+    @user.save
 
-    flash[:notice] = "会員情報を更新しました"
+    #flash[:notice] = "会員情報を更新しました"
 
     redirect_to mypage_path
 
-    else
-      render :edit
-    end
-
-  end
-
-  def destroy
-
-    car = Car.find(params[:id])
-    car.destroy
-    flash[:notice] = "投稿を削除しました"
-    redirect_to cars_path
+    #else
+      #render :edit
+    #end
 
   end
 
 
   private
     def user_params
-      params.require(:user).permit(:name,:introduction,:email,:encrypted_password,
+      params.require(:user).permit(:name,:introduction,:email,:password,:password_confirmation,
       :profile_image)
     end
 
