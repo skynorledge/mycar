@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     get '/confirm' => 'infos#confirm'
     patch '/withdrawal' => 'infos#withdrawal'
 
-    resources :infos,only: [:update]
+    #resources :infos,only: [:update]
     resources :likes,only: [:index,:create,:destroy]
 
     resources :cars,only: [:create,:destroy,:new,:edit,:update,:index,:show] do
