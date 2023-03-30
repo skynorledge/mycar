@@ -56,10 +56,13 @@
 
                 <p class="card-text">コメント件数：<%= @car.comments.count %></p>
                 <% @car.comments.each do |comment| %>
-                <!--<p class="card-text"><%#= image_tag comment.user.get_profile_image(100,100) %></p>-->
-                <p class="card-text text-primary"><%= comment.user.name %></p>
-                <p class="card-text text-success"><%= comment.comment_body %></p>
-                <%#= comment.created_at.strftime('%Y/%m/%d') %><%#= comment.comment %>
+                  <!--<p class="card-text"><%#= image_tag comment.user.get_profile_image(100,100) %></p>-->
+                  <p class="card-text text-primary"><%= comment.user.name %></p>
+                  <p class="card-text text-success"><%= comment.comment_body %></p>
+                  <%#= comment.created_at.strftime('%Y/%m/%d') %><%#= comment.comment %>
+                  <% if comment.user == current_user %>
+                  <%= link_to "削除", car_comment_path(comment.car, comment), method: :delete, class:"btn btn-danger btn-sm" %>
+                  <% end %>
                 <% end %>
 
               </div>

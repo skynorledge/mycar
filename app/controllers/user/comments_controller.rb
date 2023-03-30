@@ -8,6 +8,11 @@ class User::CommentsController < ApplicationController
     redirect_to car_path(car)
   end
 
+  def destroy
+    Comment.find(params[:id]).destroy
+    redirect_to car_path(params[:car_id])
+  end
+
   private
 
   def comment_params
