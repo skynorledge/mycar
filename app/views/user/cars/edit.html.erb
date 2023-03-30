@@ -1,2 +1,43 @@
-<h1>User::Cars#edit</h1>
-<p>Find me in app/views/user/cars/edit.html.erb</p>
+<div class = "container">
+
+  <div class = "row mt-3 mb-3 justify-content-md-center">
+    <h5>投稿編集</h5>
+  </div>
+
+  <div class = "row mt-3 mb-3 justify-content-md-center">
+
+      <%= form_with model: @car,url:car_path,method: :PATCH do |f| %>
+
+        <table class = "table table-borderless">
+
+          <tr><td>タイトル</td><td>
+          <%= f.text_field :title %></td></tr>
+
+          <tr><td>本文</td><td>
+          <%= f.text_area :body,size: "30×30" %></td></tr>
+
+          <tr><td>投稿画像選択</td><td>
+          <%= f.file_field :car_image, accept: "image/*" %></td></tr>
+
+          <tr><td>メーカー</td><td>
+          <%= f.select :maker_id, options_from_collection_for_select(Maker.all, :id, :maker_name) %>&emsp;&emsp;&emsp;&emsp;<%= f.text_field :maker_comment,:placeholder =>"その他の場合入力" %></td></tr>
+
+          <tr><td>エアロメーカー</td><td>
+          <%= f.select :aero_maker_id, options_from_collection_for_select(AeroMaker.all, :id, :aero_maker_name) %>&emsp;&emsp;<%= f.text_field :aero_maker_comment,:placeholder =>"その他の場合入力" %></td></tr>
+
+          <tr><td>車種</td><td>
+          <%= f.text_field :car_model %></td></tr>
+
+        </table>
+
+          <div class = "row mt-3 mb-3">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+            <%= f.submit '変更を保存' ,class:"btn btn-success" %>
+
+          </div>
+
+      <% end %>
+
+  </div>
+
+</div>
