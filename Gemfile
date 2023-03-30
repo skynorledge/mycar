@@ -66,3 +66,5 @@ group :development do
 end
 
 gem 'image_processing', '~> 1.2'
+
+gem 'tzinfo-data'
