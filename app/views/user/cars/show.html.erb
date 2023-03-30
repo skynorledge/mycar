@@ -8,13 +8,23 @@
 
               <p class="card-text">投稿ユーザー：<%= @car.user.name %></p>
               <br><br>
-              <p class="card-text">メーカー：<%= @car.maker.maker_name %></p>
+              <p class="card-text">メーカー：
+              <% unless @car.maker_id == 8 %>
+              <%= @car.maker.maker_name %>
+              <% else %>
+              <%= @car.maker_comment %>
+              <% end %></p>
               <br><br>
-              <p class="card-text">エアロメーカー：<%= @car.aero_maker.aero_maker_name %></p>
+              <p class="card-text">エアロメーカー：
+              <% unless @car.aero_maker_id == 8 %>
+              <%= @car.aero_maker.aero_maker_name %>
+              <% else %>
+              <%= @car.aero_maker_comment %>
+              <% end %></p>
               <br><br>
               <p class="card-text">車種：<%= @car.car_model %></p>
               <br><br>
-              <p class="card-text">投稿日時：<%= @car.created_at.strftime('%Y/%m/%d') %></p>
+              <p class="card-text">投稿日時：<%= l @car.created_at,format: :short %></p>
               <br><br>
               <% if @car.user == current_user %>
                 <%= link_to "編集", edit_car_path(@car),class:"btn btn-success" %>&emsp;&emsp;&emsp;&emsp;
@@ -58,7 +68,7 @@
 
                 <%= form_with model: [@car, @comment] do |f| %><br>
                 <%= f.text_area :comment_body, rows: '5', placeholder: "コメント記入欄" %><br><br>
-                <%= f.submit "送信する" ,class:"btn btn-success" %>
+                <%= f.submit "送信する" ,class:"btn btn-success"%>
                 <% end %>
 
               </div>
