@@ -44,6 +44,20 @@
               <p class="card-text">タイトル：<%= @car.title %></p>
               <p class="card-text"><%= @car.body %></p>
 
+              <% if @car.liked_by?(current_user) %>
+              <p>
+                <%= link_to car_likes_path(@car), method: :delete do %>
+                  ★<%= @car.likes.count %> いいね
+                <% end %>
+              </p>
+              <% else %>
+              <p>
+                <%= link_to car_likes_path(@car), method: :post do %>
+                  ☆<%= @car.likes.count %> いいね
+                <% end %>
+              </p>
+            <% end %>
+
             </div>
 
           </div>
