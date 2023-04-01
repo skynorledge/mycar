@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get '/info/edit' => "infos#edit"
     get '/confirm' => 'infos#confirm'
     patch '/withdrawal' => 'infos#withdrawal'
+    get "liked_cars", to: "infos#liked_cars"
 
     resources :cars,only: [:create,:destroy,:new,:edit,:update,:index,:show] do
       resources :comments,only: [:create,:destroy]

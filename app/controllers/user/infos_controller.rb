@@ -18,6 +18,13 @@ class User::InfosController < ApplicationController
 
   end
 
+  def liked_cars
+
+    @user = current_user
+    @liked_cars = @user.liked_cars
+
+  end
+
   def show
 
     @user = current_user

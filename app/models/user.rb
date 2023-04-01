@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :cars, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :liked_cars, through: :likes, source: :car
 
   def active_for_authentication?
     super && (is_deleted == false)
