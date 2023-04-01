@@ -3,6 +3,7 @@
   <div class = "row mt-3 mb-3">
     <div class = "col">
       <h4>投稿一覧</h4>
+      <p>画像クリックで詳細に飛べます</p>
     </div>
   </div>
 
@@ -24,8 +25,8 @@
 
               <tr>
 
-                <td><%= image_tag car.get_car_image(100,100) %><br>
-                <%= link_to car.user.name,car_path(car.id) %><br>
+                <td><%= link_to (image_tag car.get_car_image(100,100)),car_path(car.id) %><br>
+                <%= car.user.name %><br>
                 <%= car.maker.maker_name %><br>
                 <%= car.aero_maker.aero_maker_name %><br>
                 <%= car.car_model %></td>
