@@ -71,12 +71,44 @@
                 <p class="card-text">コメント件数：<%= @car.comments.count %></p>
                 <% @car.comments.each do |comment| %>
                   <!--<p class="card-text"><%#= image_tag comment.user.get_profile_image(100,100) %></p>-->
-                  <p class="card-text text-primary"><%= comment.user.name %></p>
-                  <p class="card-text text-success"><%= comment.comment_body %></p>
+                  <p class="card-text">
+
+                    <% original_text = comment.comment_body %>
+                    <% truncated_text = truncate(original_text, length: 15) %>
+
+                    <% if original_text.length > 15 %>
+                      <span class="truncate-text"><%= truncated_text %></span>
+                      <a href="#" class="read-more-link">➢</a>
+                      <span class="full-text" style="display: none;"><%= original_text %></span>
+                    <% else %>
+                      <span><%= original_text %></span>
+                    <% end %>
+
+                    <script>
+                    $(document).ready(function() {
+                      $('.read-more-link').click(function(event) {
+                        event.preventDefault();
+                        var $parent = $(this).parent();
+                        var $truncatedText = $parent.find('.truncate-text');
+                        var $fullText = $parent.find('.full-text');
+                        $truncatedText.hide();
+                        $fullText.show();
+                        $(this).hide();
+                      });
+                    });
+                    </script>
+                    <%#= truncate(comment.comment_body, length: 10) %><%#= comment.comment_body.truncate(15) %>
+
+                    </p>
+                  <p class="card-text"><%= comment.user.name %>
+                  <% if comment.user == current_user %>｜
+                  <%= link_to "削除", car_comment_path(comment.car, comment), method: :delete,"data-confirm" =>"コメントを削除します、よろしいですか？" %>
+                  <% end %></p>
+                  <!--<p class="card-text"><%#= comment.comment_body %></p>-->
                   <%#= comment.created_at.strftime('%Y/%m/%d') %><%#= comment.comment %>
-                  <% if comment.user == current_user %>
-                  <%= link_to "削除", car_comment_path(comment.car, comment), method: :delete, class:"btn btn-danger btn-sm" %>
-                  <% end %>
+                  <%# if comment.user == current_user %>
+                  <%#= link_to "削除", car_comment_path(comment.car, comment), method: :delete, class:"btn btn-danger btn-sm" %>
+                  <%# end %>
                 <% end %>
 
               </div>
