@@ -25,6 +25,13 @@ class User::InfosController < ApplicationController
 
   end
 
+  # def post_user
+
+  #   @user = User.find(params[:id])
+  #   @cars = @user.cars
+
+  # end
+
   def show
 
     @user = current_user
