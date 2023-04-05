@@ -19,6 +19,11 @@ class Car < ApplicationRecord
     likes.exists?(user_id: user.id)
   end
 
+  # def self.search(search)
+  #     return Car.all unless search
+  #     Car.where(['content LIKE ?', "%#{search}%"])
+  # end
+
   def get_car_image(width, height)
     unless car_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
