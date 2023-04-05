@@ -28,6 +28,12 @@ class User::CarsController < ApplicationController
 
   end
 
+  #def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    #@cars = Car.search(params[:search])
+
+  #end
+
   def update
 
     @car = Car.find(params[:id])
@@ -41,6 +47,40 @@ class User::CarsController < ApplicationController
   def index
 
     @cars = Car.all
+
+    if params[:maker_id] && params[:aero_maker_id] # 両方のIDが渡された場合
+      @cars = Car.where(maker_id: params[:maker_id], aero_maker_id: params[:aero_maker_id])
+    elsif params[:maker_id] # maker_idのみが渡された場合
+      if params[:maker_id] == '8'
+        @cars = Car.where.not(maker_id: [1, 2, 3, 4, 5, 6, 7])
+      else
+        @cars = Car.where(maker_id: params[:maker_id])
+      end
+    elsif params[:aero_maker_id] # aero_maker_idのみが渡された場合
+      @cars = Car.where(aero_maker_id: params[:aero_maker_id])
+
+    elsif params[:search]
+
+      search_string = params[:search].tr('０-９ａ-ｚＡ-Ｚあ-んア-ケ', '0-9a-zA-Zぁ-んァ-ヶ').downcase
+      #search_string = search_string.gsub('トヨタ', 'TOYOTA')
+      #search_string = params[:search].gsub(/[ァ-ヶ]/, '.*').tr('０-９ａ-ｚＡ-Ｚあ-んア-ケ', '0-9a-zA-Zぁ-んァ-ヶ').downcase
+
+      @cars = Car.joins(:maker,:aero_maker).where('LOWER(cars.title) LIKE ? OR LOWER(cars.body) LIKE ? OR LOWER(cars.car_model) LIKE ?
+      OR LOWER(cars.maker_comment) LIKE ? OR LOWER(cars.aero_maker_comment) LIKE ?
+      OR LOWER(makers.maker_name) LIKE ? OR LOWER(aero_makers.aero_maker_name) LIKE ? ',
+      "%#{search_string}%", "%#{search_string}%", "%#{search_string}%","%#{search_string}%",
+      "%#{search_string}%","%#{search_string}%","%#{search_string}%")
+
+      #search_string = params[:search]
+      #normalized_search_string = search_string.tr('０-９ａ-ｚＡ-Ｚ', '0-9a-zA-Z').downcase
+
+      #@cars = Car.where('LOWER(title) LIKE ? OR LOWER(body) LIKE ? ', "%#{normalized_search_string}%", "%#{normalized_search_string}%")
+
+    else
+      @cars = Car.all
+    end
+
+
 
   end
 
