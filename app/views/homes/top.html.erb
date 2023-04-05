@@ -11,27 +11,31 @@
           <div class="card-body">
 
             <h4 class="card-title">メーカー</h4>
-            <p class="card-text">TOYOTA</p>
-            <p class="card-text">NISSAN</p>
-            <p class="card-text">HONDA</p>
-            <p class="card-text">MAZDA</p>
-            <p class="card-text">SUBARU</p>
-            <p class="card-text">MITSUBISHI</p>
-            <p class="card-text">SUZUKI</p>
+
+            <p class="card-text"><%= link_to "TOYOTA", cars_path(search: Maker.find(1).maker_name) %></p>
+            <p class="card-text"><%= link_to "NISSAN", cars_path(search: Maker.find(2).maker_name) %></p>
+            <p class="card-text"><%= link_to "HONDA", cars_path(search: Maker.find(3).maker_name) %></p>
+            <p class="card-text"><%= link_to "MAZDA", cars_path(search: Maker.find(4).maker_name) %></p>
+            <p class="card-text"><%= link_to "SUBARU", cars_path(search: Maker.find(5).maker_name) %></p>
+            <p class="card-text"><%= link_to "MITSUBISHI", cars_path(search: Maker.find(6).maker_name) %></p>
+            <p class="card-text"><%= link_to "SUZUKI", cars_path(search: Maker.find(7).maker_name) %></p>
+            <p class="card-text"><%= link_to "その他", cars_path(maker_id: 8) %></p>
 
             <h4 class="card-title">エアロパーツメーカー</h4>
-            <p class="card-text">admiration</p>
-            <p class="card-text">AIMGAIN</p>
-            <p class="card-text">AMS</p>
-            <p class="card-text">ARTISAN SPIRITS</p>
-            <p class="card-text">TOMS</p>
-            <p class="card-text">TRD</p>
-            <p class="card-text">CRAVE</p>
-            <p class="card-text">その他</p>
+
+            <p class="card-text"><%= link_to "admiration", cars_path(search: AeroMaker.find(1).aero_maker_name) %></p>
+            <p class="card-text"><%= link_to "AIMGAIN", cars_path(search: AeroMaker.find(2).aero_maker_name) %></p>
+            <p class="card-text"><%= link_to "AMS", cars_path(search: AeroMaker.find(3).aero_maker_name) %></p>
+            <p class="card-text"><%= link_to "ARTISAN SPIRITS", cars_path(search: AeroMaker.find(4).aero_maker_name) %></p>
+            <p class="card-text"><%= link_to "TOMS", cars_path(search: AeroMaker.find(5).aero_maker_name) %></p>
+            <p class="card-text"><%= link_to "TRD", cars_path(search: AeroMaker.find(6).aero_maker_name) %></p>
+            <p class="card-text"><%= link_to "CRAVE", cars_path(search: AeroMaker.find(7).aero_maker_name) %></p>
+            <p class="card-text"><%= link_to "その他", cars_path(aero_maker_id: 8) %></p>
 
           </div>
 
         </div>
+
 
     <!--</div>-->
 
@@ -103,7 +107,7 @@
             <%= image_tag("mycar.jpg.JPG", width: 400, height: 300) %>
             <p class="card-text">タイトル</p>
             <p class="card-text">自己紹介</p>
-            <p class="card-text">本文</p>
+            <p class="card-text">利用サイト：Logo made by <a href="https://www.designevo.com/" title="Free Online Logo Maker">DesignEvo free logo creator</a></p>
 
           </div>
 
