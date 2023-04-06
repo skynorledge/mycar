@@ -4,6 +4,9 @@
     <div class = "col-md-3">
       <h4>投稿一覧</h4>
       <p>画像クリックで詳細に飛べます</p>
+      <% if @hit_count.present? %>
+        <p><%= @hit_count %>件ヒット</p>
+      <% end %>
     </div>
     <div class = "col-md-3">
       <p>・ユーザー名</p>
@@ -58,6 +61,10 @@
       <% end %>
 
     </div>
+
+    <!--<div class="d-flex justify-content-center">-->
+    <!--  <%#= paginate @cars %>-->
+    <!--</div>-->
 
 </div>
 
