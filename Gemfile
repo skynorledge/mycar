@@ -70,3 +70,5 @@ gem 'image_processing', '~> 1.2'
 #gem 'tzinfo-data'
 
 gem 'acts_as_votable'
+
+gem 'kaminari','~> 1.2.1'
