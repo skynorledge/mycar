@@ -3,6 +3,8 @@ class Car < ApplicationRecord
   has_one_attached :car_image
   has_one_attached :profile_image
 
+  #paginates_per 8
+
   #acts_as_votable
 
   belongs_to :user

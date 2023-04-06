@@ -46,8 +46,6 @@ class User::CarsController < ApplicationController
 
   def index
 
-    @cars = Car.all
-
     if params[:maker_id] && params[:aero_maker_id] # 両方のIDが渡された場合
       @cars = Car.where(maker_id: params[:maker_id], aero_maker_id: params[:aero_maker_id])
     elsif params[:maker_id] # maker_idのみが渡された場合
@@ -77,9 +75,17 @@ class User::CarsController < ApplicationController
       #@cars = Car.where('LOWER(title) LIKE ? OR LOWER(body) LIKE ? ', "%#{normalized_search_string}%", "%#{normalized_search_string}%")
 
     else
+      #@cars = Car.all.page(params[:page])
+      #@cars = Car.page(params[:page]).per(8)
       @cars = Car.all
     end
 
+    @hit_count = @cars.count # 検索結果の件数を取得
+
+    respond_to do |format|
+      format.html # index.html.erbを表示
+      format.json { render json: @cars }
+    end
 
 
   end
