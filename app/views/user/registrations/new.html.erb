@@ -17,7 +17,7 @@
     <%= f.text_field :name%></td></tr>
 
     <tr><td><%= f.label :自己紹介 %></td><td>
-    <%= f.text_area :introduction ,size: "60×50" %></td></tr>
+    <%= f.text_area :introduction ,rows: 10, cols: 50 %></td></tr>
 
     <tr><td><%= f.label :プロフィール画像 %></td><td>
     <%= f.file_field :profile_image, accept: "image/*" %></td></tr>
