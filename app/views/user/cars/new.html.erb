@@ -28,6 +28,28 @@
           <tr><td>車種</td><td>
           <%= f.text_field :car_model %></td></tr>
 
+          <!--<tr><td>タグ</td><td>-->
+          <!--<%# counter = 0 %>-->
+          <!--<%# Tag.all.each do |tag| %>-->
+          <!--  <%#= check_box_tag "car[tag_ids][]", tag.id, @car.tags.include?(tag) %>-->
+          <!--  <%#= tag.tag_name %>&emsp;-->
+          <!--  <%# counter += 1 %>-->
+          <!--  <%# if counter % 6 == 0 %>-->
+          <!--  <br><br>-->
+          <!--  <%# end %>-->
+          <!--<%# end %></td></tr>-->
+
+          <tr><td>タグ</td><td>
+          <% counter = 0 %>
+          <% Tag.all.each do |tag| %>
+            <%= check_box_tag "tag_ids[#{tag.id}]", 1, @car&.tags&.include?(tag) %>
+            <%= tag.tag_name %>&emsp;
+            <% counter += 1 %>
+            <% if counter % 6 == 0 %>
+            <br><br>
+            <% end %>
+          <% end %></td></tr>
+
         </table>
 
           <div class = "row mt-3 mb-3">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;

@@ -109,6 +109,21 @@
             <p class="card-text">自己紹介</p>
             <p class="card-text">利用サイト：Logo made by <a href="https://www.designevo.com/" title="Free Online Logo Maker">DesignEvo free logo creator</a></p>
 
+
+            <%= form_tag cars_path, method: :get do %>
+              <% Tag.all.each do |tag| %>
+                <%= check_box_tag "tag_ids[]", tag.id %>
+                <%= tag.tag_name %><br>
+              <% end %>
+              <%= submit_tag "検索" %>
+            <% end %>
+
+            <%#= form_tag(cars_path, method: :get) do %>
+              <%#= label_tag(:tag_name, "Tag:") %>
+              <%#= text_field_tag(:tag_name) %>
+              <%#= submit_tag("Search") %>
+            <%# end %>
+
           </div>
 
         </div>

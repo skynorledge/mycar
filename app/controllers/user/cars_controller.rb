@@ -16,15 +16,28 @@ class User::CarsController < ApplicationController
 
   def create
 
-    @car = current_user
+    @car = current_user.cars.build(car_params)
 
-    @car = Car.new(car_params)
+    tag_ids = params[:tag_ids].keys if params[:tag_ids]
 
-    @car.user_id = current_user.id
+    if @car.save
 
-    @car.save
+      @car.save_tags(tag_ids)
+      redirect_to car_path(@car)
 
-    redirect_to car_path(@car)
+    else
+      render :new
+    end
+
+    # @car = current_user
+
+    # @car = Car.new(car_params)
+
+    # @car.user_id = current_user.id
+
+    # @car.save
+
+    # redirect_to car_path(@car)
 
   end
 
@@ -73,11 +86,14 @@ class User::CarsController < ApplicationController
       #normalized_search_string = search_string.tr('０-９ａ-ｚＡ-Ｚ', '0-9a-zA-Z').downcase
 
       #@cars = Car.where('LOWER(title) LIKE ? OR LOWER(body) LIKE ? ', "%#{normalized_search_string}%", "%#{normalized_search_string}%")
+    elsif params[:tag_ids]
+      @cars = Car.joins(:tags).where(tags: { id: params[:tag_ids] }).distinct
 
     else
       #@cars = Car.all.page(params[:page])
       #@cars = Car.page(params[:page]).per(8)
       @cars = Car.all
+
     end
 
     @hit_count = @cars.count # 検索結果の件数を取得
@@ -86,6 +102,27 @@ class User::CarsController < ApplicationController
       format.html # index.html.erbを表示
       format.json { render json: @cars }
     end
+
+    #@tags = Tag.where(id: params[:tag_ids])
+    #@post_tags = Tag.joins(:tags).where(tags: { id: @tags })
+
+    # @car = Car.find(params[:id])
+    # @tag = Tag.find(params[:id])
+    # @post_tag = PostTag.new(car: car, tag: tag)
+    # @post_tag.save
+
+    # @tag = Tag.find_by(name: params[:tag_name])
+    # @cars_with_tag = @tag.cars.joins(:post_tags).where(post_tags: { tag_id: @tag.id })
+
+    # if params[:tag_ids]
+    #   @cars = []
+    #   params[:tag_ids].each do |key, value|
+    #     if value == "1"
+    #       tag_cars = Tag.find_by(tag_name: key).cars
+    #       @cars = @cars.empty? ? tag_cars : @cars & tag_cars
+    #     end
+    #   end
+    # end
 
 
   end
@@ -109,8 +146,8 @@ class User::CarsController < ApplicationController
   private
 
     def car_params
-      params.require(:car).permit(:user_id,:maker_id,:aero_maker_id,:car_image,
-      :profile_image,:title,:body,:maker_comment,:aero_maker_comment,:car_model,:created_at)
+      params.require(:car).permit(:maker_id,:aero_maker_id,:car_image,:profile_image,:title,:body,
+      :maker_comment,:aero_maker_comment,:car_model).merge(user_id: current_user.id)
     end
 
 end

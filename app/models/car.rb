@@ -21,6 +21,16 @@ class Car < ApplicationRecord
     likes.exists?(user_id: user.id)
   end
 
+  def save_tags(tag_ids)
+    return if tag_ids.nil?
+
+    post_tags.where.not(tag_id: tag_ids).destroy_all
+
+    tag_ids.each do |tag_id|
+      PostTag.find_or_create_by(car_id: id, tag_id: tag_id)
+    end
+  end
+
   # def self.search(search)
   #     return Car.all unless search
   #     Car.where(['content LIKE ?', "%#{search}%"])
