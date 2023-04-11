@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     sessions: 'user/sessions'
   }
 
+  resources :guest_sessions, only: [:new, :create]
+
   root to: 'homes#top'
 
   namespace :admin do
@@ -40,5 +42,6 @@ Rails.application.routes.draw do
     end
 
   end
+
 
 end

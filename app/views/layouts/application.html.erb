@@ -61,6 +61,9 @@
 
               <% else %>
 
+              <li class="nav-item">
+                <%= link_to 'ゲストログイン', new_guest_session_path,class: 'nav-link text-dark' %>
+              </li>
 
               <li class="nav-item">
                 <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
