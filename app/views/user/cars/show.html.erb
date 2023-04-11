@@ -26,6 +26,8 @@
               <br><br>
               <p class="card-text">投稿日時：<%= l @car.created_at,format: :short %></p>
               <br><br>
+              <p class="card-text">タグ：<%= @car.tags.map(&:tag_name).join('、') %></p>
+              <br><br>
               <% if @car.user == current_user %>
                 <%= link_to "編集", edit_car_path(@car),class:"btn btn-success" %>&emsp;&emsp;&emsp;&emsp;
                 <%= link_to "削除", car_path(@car),class:"btn btn-danger", method: :delete,"data-confirm" => "本当に消しますか？" %>
