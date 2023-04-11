@@ -144,6 +144,13 @@ class User::CarsController < ApplicationController
 
   end
 
+  def mypost
+
+    @user = current_user
+    @cars = @user.cars
+
+  end
+
   def destroy
 
     car = Car.find(params[:id])

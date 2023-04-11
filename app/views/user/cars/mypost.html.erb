@@ -1,0 +1,54 @@
+<div class = "container">
+
+  <div class = "row mt-3 mb-3">
+      <h4><%= @user.name %>の投稿一覧</h4>
+  </div>
+
+
+    <div class = "row mt-3 mb-3">
+
+      <% @cars.each do |car| %>
+
+        <div class = "col-md-3">
+
+          <table class = "table table-borderless">
+            <thead>
+              <tr>
+                <th colspan="1"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+
+                <td><%= link_to (image_tag car.get_car_image(100,100)),car_path(car.id) %><br>
+                <%= car.user.name %><br>
+
+                <% unless car.maker_id == 8 %>
+                  <%= car.maker.maker_name %>
+                  <% else %>
+                  <%= car.maker_comment %>
+                <% end %><br>
+
+                <% unless car.aero_maker_id == 8 %>
+                  <%= car.aero_maker.aero_maker_name %>
+                  <% else %>
+                  <%= car.aero_maker_comment %>
+                <% end %><br>
+
+                <%= car.car_model %></td>
+
+              </tr>
+
+             </tbody>
+          </table>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+</div>
+
