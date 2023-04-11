@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
   validates :name, presence:true, length: {minimum:1,maximum:15},uniqueness: true
-  validates :introduction, length: {maximum:100}
+  # validates :introduction, length: {maximum:100}
 
   has_many :cars, dependent: :destroy
   has_many :comments, dependent: :destroy
