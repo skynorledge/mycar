@@ -108,6 +108,8 @@ class User::CarsController < ApplicationController
 
     @hit_count = @cars.count # 検索結果の件数を取得
 
+    @cars = @cars.page(params[:page]).per(8) # ページネーションを実装する
+
     respond_to do |format|
       format.html # index.html.erbを表示
       format.json { render json: @cars }
@@ -148,6 +150,7 @@ class User::CarsController < ApplicationController
 
     @user = current_user
     @cars = @user.cars
+    @cars = @cars.page(params[:page]).per(8) # ページネーションを実装する
 
   end
 
