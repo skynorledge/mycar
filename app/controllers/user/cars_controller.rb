@@ -49,11 +49,21 @@ class User::CarsController < ApplicationController
 
   def update
 
-    @car = Car.find(params[:id])
-    @car.update(car_params)
-    @car.save
+    @car = current_user.cars.find(params[:id])
+    tag_ids = params[:tag_ids].keys if params[:tag_ids]
 
-    redirect_to car_path(@car.id)
+    if @car.update(car_params)
+      @car.save_tags(tag_ids)
+      redirect_to car_path(@car)
+    else
+      render :edit
+    end
+
+    # @car = Car.find(params[:id])
+    # @car.update(car_params)
+    # @car.save
+
+    # redirect_to car_path(@car.id)
 
   end
 
