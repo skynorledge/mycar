@@ -52,44 +52,30 @@
             <p class="card-text">それ以外のことでも車に関することなら</p>
             <p class="card-text">なんでも投稿してください！</p>
 
-          </div>
 
-          <div class="card-body">
+            <br>
 
-            <table class = "table table-bordered">
-              <thead>
-                <tr>
-                  <th colspan="1"></th>
-                  <th>ユーザー名</th>
-                  <th>メーカー</th>
-                  <th>エアロメーカー</th>
-                  <th>車種</th>
-                </tr>
-              </thead>
+          <!--</div>-->
 
-              <tbody>
+          <!--<div class="card-body">-->
 
-                <% @cars.each do |car| %>
+          <h4 class="card-text">タグ検索</h4>
 
-                <tr>
+          <br>
 
-                  <td><%= image_tag car.user.get_profile_image(100,100) %></td>
-
-                  <td><%= car.user.name %></td>
-
-                  <td><%= car.maker.maker_name %></td>
-
-                  <td><%= car.aero_maker.aero_maker_name %></td>
-
-                  <td><%= car.car_model %></td>
-
-                </tr>
-
+            <% counter = 0 %>
+            <%= form_tag cars_path, method: :get do %>
+              <% Tag.all.each do |tag| %>
+                <%= check_box_tag "tag_ids[]", tag.id %>
+                <%= tag.tag_name %>&emsp;
+                <% counter += 1 %>
+                <% if counter % 4 == 0 %>
+                <br><br>
                 <% end %>
-
-
-              </tbody>
-            </table>
+              <% end %>
+              <br><br>
+              <%= submit_tag "検索" %>
+            <% end %>
 
           </div>
 
@@ -109,15 +95,6 @@
             <p class="card-text">自己紹介</p>
             <p class="card-text">利用サイト：Logo made by <a href="https://www.designevo.com/" title="Free Online Logo Maker">DesignEvo free logo creator</a></p>
 
-
-            <%= form_tag cars_path, method: :get do %>
-              <% Tag.all.each do |tag| %>
-                <%= check_box_tag "tag_ids[]", tag.id %>
-                <%= tag.tag_name %><br>
-              <% end %>
-              <%= submit_tag "検索" %>
-            <% end %>
-
             <%#= form_tag(cars_path, method: :get) do %>
               <%#= label_tag(:tag_name, "Tag:") %>
               <%#= text_field_tag(:tag_name) %>
@@ -135,3 +112,38 @@
   <!--</div>-->
 
 <!--</div>-->
+
+            <!--<table class = "table table-bordered">-->
+            <!--  <thead>-->
+            <!--    <tr>-->
+            <!--      <th colspan="1"></th>-->
+            <!--      <th>ユーザー名</th>-->
+            <!--      <th>メーカー</th>-->
+            <!--      <th>エアロメーカー</th>-->
+            <!--      <th>車種</th>-->
+            <!--    </tr>-->
+            <!--  </thead>-->
+
+            <!--  <tbody>-->
+
+            <!--    <%# @cars.each do |car| %>-->
+
+            <!--    <tr>-->
+
+            <!--      <td><%#= image_tag car.user.get_profile_image(100,100) %></td>-->
+
+            <!--      <td><%#= car.user.name %></td>-->
+
+            <!--      <td><%#= car.maker.maker_name %></td>-->
+
+            <!--      <td><%#= car.aero_maker.aero_maker_name %></td>-->
+
+            <!--      <td><%#= car.car_model %></td>-->
+
+            <!--    </tr>-->
+
+            <!--    <%# end %>-->
+
+
+            <!--  </tbody>-->
+            <!--</table>-->
