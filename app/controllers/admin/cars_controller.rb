@@ -1,5 +1,7 @@
 class Admin::CarsController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def show
 
     @car = Car.find(params[:id])

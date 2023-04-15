@@ -1,6 +1,6 @@
 class User::CarsController < ApplicationController
 
-  #before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
 
   def new
 
@@ -29,23 +29,7 @@ class User::CarsController < ApplicationController
       render :new
     end
 
-    # @car = current_user
-
-    # @car = Car.new(car_params)
-
-    # @car.user_id = current_user.id
-
-    # @car.save
-
-    # redirect_to car_path(@car)
-
   end
-
-  #def search
-    #Viewのformで取得したパラメータをモデルに渡す
-    #@cars = Car.search(params[:search])
-
-  #end
 
   def update
 
@@ -58,12 +42,6 @@ class User::CarsController < ApplicationController
     else
       render :edit
     end
-
-    # @car = Car.find(params[:id])
-    # @car.update(car_params)
-    # @car.save
-
-    # redirect_to car_path(@car.id)
 
   end
 
@@ -83,8 +61,6 @@ class User::CarsController < ApplicationController
     elsif params[:search]
 
       search_string = params[:search].tr('０-９ａ-ｚＡ-Ｚあ-んア-ケ', '0-9a-zA-Zぁ-んァ-ヶ').downcase
-      #search_string = search_string.gsub('トヨタ', 'TOYOTA')
-      #search_string = params[:search].gsub(/[ァ-ヶ]/, '.*').tr('０-９ａ-ｚＡ-Ｚあ-んア-ケ', '0-9a-zA-Zぁ-んァ-ヶ').downcase
 
       @cars = Car.joins(:maker,:aero_maker).where('LOWER(cars.title) LIKE ? OR LOWER(cars.body) LIKE ? OR LOWER(cars.car_model) LIKE ?
       OR LOWER(cars.maker_comment) LIKE ? OR LOWER(cars.aero_maker_comment) LIKE ?
@@ -92,16 +68,12 @@ class User::CarsController < ApplicationController
       "%#{search_string}%", "%#{search_string}%", "%#{search_string}%","%#{search_string}%",
       "%#{search_string}%","%#{search_string}%","%#{search_string}%")
 
-      #search_string = params[:search]
-      #normalized_search_string = search_string.tr('０-９ａ-ｚＡ-Ｚ', '0-9a-zA-Z').downcase
-
-      #@cars = Car.where('LOWER(title) LIKE ? OR LOWER(body) LIKE ? ', "%#{normalized_search_string}%", "%#{normalized_search_string}%")
     elsif params[:tag_ids]
+
       @cars = Car.joins(:tags).where(tags: { id: params[:tag_ids] }).distinct
 
     else
-      #@cars = Car.all.page(params[:page])
-      #@cars = Car.page(params[:page]).per(8)
+
       @cars = Car.all
 
     end
@@ -113,29 +85,8 @@ class User::CarsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erbを表示
       format.json { render json: @cars }
+
     end
-
-    #@tags = Tag.where(id: params[:tag_ids])
-    #@post_tags = Tag.joins(:tags).where(tags: { id: @tags })
-
-    # @car = Car.find(params[:id])
-    # @tag = Tag.find(params[:id])
-    # @post_tag = PostTag.new(car: car, tag: tag)
-    # @post_tag.save
-
-    # @tag = Tag.find_by(name: params[:tag_name])
-    # @cars_with_tag = @tag.cars.joins(:post_tags).where(post_tags: { tag_id: @tag.id })
-
-    # if params[:tag_ids]
-    #   @cars = []
-    #   params[:tag_ids].each do |key, value|
-    #     if value == "1"
-    #       tag_cars = Tag.find_by(tag_name: key).cars
-    #       @cars = @cars.empty? ? tag_cars : @cars & tag_cars
-    #     end
-    #   end
-    # end
-
 
   end
 

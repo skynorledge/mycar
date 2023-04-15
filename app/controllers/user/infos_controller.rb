@@ -1,6 +1,6 @@
 class User::InfosController < ApplicationController
 
-  #before_action :authenticate_customer!, except: [:show,:edit]
+  before_action :authenticate_user!, except: [:show]
 
   def confirm
 
@@ -25,26 +25,17 @@ class User::InfosController < ApplicationController
 
   end
 
-  # def post_user
-
-  #   @user = User.find(params[:id])
-  #   @cars = @user.cars
-
-  # end
-
   def show
 
     @user = current_user
 
   end
 
-
   def edit
 
     @user = current_user
 
   end
-
 
   def update
 
@@ -61,7 +52,6 @@ class User::InfosController < ApplicationController
     end
 
   end
-
 
   private
     def user_params
