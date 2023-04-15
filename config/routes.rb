@@ -17,8 +17,9 @@ Rails.application.routes.draw do
 
     root to: 'homes#top'
 
-    resources :comments,only: [:destroy]
-    resources :cars,only: [:show,:destroy]
+    resources :cars,only: [:show,:destroy] do
+      resources :comments,only: [:destroy]
+    end
     resources :users,only: [:index,:show,:update]
 
   end

@@ -1,2 +1,133 @@
-<h1>Admin::Cars#show</h1>
-<p>Find me in app/views/admin/cars/show.html.erb</p>
+        <div class="card-deck">
+
+          <div class="card border border-0 mt-3 mb-3">
+
+            <div class="card-body">
+
+              <p class="card-text">投稿ユーザー：<%= @car.user.name %></p>
+              <br><br>
+              <p class="card-text">メーカー：
+              <% unless @car.maker_id == 8 %>
+              <%= @car.maker.maker_name %>
+              <% else %>
+              <%= @car.maker_comment %>
+              <% end %></p>
+              <br><br>
+              <p class="card-text">エアロメーカー：
+              <% unless @car.aero_maker_id == 8 %>
+              <%= @car.aero_maker.aero_maker_name %>
+              <% else %>
+              <%= @car.aero_maker_comment %>
+              <% end %></p>
+              <br><br>
+              <p class="card-text">車種：<%= @car.car_model %></p>
+              <br><br>
+              <p class="card-text">投稿日時：<%= l @car.created_at,format: :short %></p>
+              <br><br>
+              <p class="card-text">タグ：<%= @car.tags.map(&:tag_name).join('、') %></p>
+              <br><br>
+              <%# if @car.user == current_user %>
+                <!--<%#= link_to "編集", edit_car_path(@car),class:"btn btn-success" %>&emsp;&emsp;&emsp;&emsp;-->
+                <%= link_to "削除", admin_car_path(@car),class:"btn btn-danger", method: :delete,"data-confirm" => "本当に消しますか？" %>
+              <%# end %>
+
+            </div>
+
+          </div>
+
+          <div class="card border border-0 mt-3 mb-3">
+
+            <div class="card-body text-center">
+
+              <!--<h4 class="card-title">投稿詳細</h4>-->
+              <p class="card-text"><%= image_tag @car.get_car_image(400,500) %></p>
+              <p class="card-text">タイトル：<%= @car.title %></p>
+              <p class="card-text"><%= @car.body %></p>
+
+              <% if false %>
+
+              <% if @car.liked_by?(current_user) %>
+              <p>
+                <%= link_to car_likes_path(@car), method: :delete do %>
+                  ★<%= @car.likes.count %> いいね
+                <% end %>
+              </p>
+              <% else %>
+              <p>
+                <%= link_to car_likes_path(@car), method: :post do %>
+                  ☆<%= @car.likes.count %> いいね
+                <% end %>
+              </p>
+            <% end %>
+
+            <% end %>
+
+            </div>
+
+          </div>
+
+          <div class="card border border-0 mt-3 mb-3">
+
+            <div class="card-body text-center">
+
+              <div>
+
+                <p class="card-text">コメント件数：<%= @car.comments.count %></p>
+
+                <% @car.comments.each do |comment| %>
+                  <!--<p class="card-text"><%#= image_tag comment.user.get_profile_image(100,100) %></p>-->
+                  <p class="card-text">
+
+                    <% original_text = comment.comment_body %>
+                    <% truncated_text = truncate(original_text, length: 15) %>
+
+                    <% if original_text.length > 15 %>
+                      <span class="truncate-text"><%= truncated_text %></span>
+                      <a href="#" class="read-more-link">➢</a>
+                      <span class="full-text" style="display: none;"><%= original_text %></span>
+                    <% else %>
+                      <span><%= original_text %></span>
+                    <% end %>
+
+                    <script>
+                    $(document).ready(function() {
+                      $('.read-more-link').click(function(event) {
+                        event.preventDefault();
+                        var $parent = $(this).parent();
+                        var $truncatedText = $parent.find('.truncate-text');
+                        var $fullText = $parent.find('.full-text');
+                        $truncatedText.hide();
+                        $fullText.show();
+                        $(this).hide();
+                      });
+                    });
+                    </script>
+
+                    </p>
+                  <p class="card-text"><%= comment.user.name %>
+                  <%# if comment.user == current_user %>｜
+                  <%= link_to "削除", admin_car_comment_path(comment.car, comment), method: :delete,"data-confirm" =>"コメントを削除します、よろしいですか？" %>
+                  <%# end %></p>
+                  <!--<p class="card-text"><%#= comment.comment_body %></p>-->
+                  <%#= comment.created_at.strftime('%Y/%m/%d') %><%#= comment.comment %>
+                  <%# if comment.user == current_user %>
+                  <%#= link_to "削除", car_comment_path(comment.car, comment), method: :delete, class:"btn btn-danger btn-sm" %>
+                  <%# end %>
+                <% end %>
+
+              </div>
+
+              <!--<div>-->
+
+                <%#= form_with model: [@car, @comment] do |f| %><br>
+                <%#= f.text_area :comment_body, rows: '5', placeholder: "コメント記入欄" %><br><br>
+                <%#= f.submit "送信する" ,class:"btn btn-success"%>
+                <%# end %>
+
+              <!--</div>-->
+
+            </div>
+
+          </div>
+
+        </div>

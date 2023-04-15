@@ -1,2 +1,124 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<div class = "container">
+
+  <div class = "row mt-3 mb-3">
+    <div class = "col-md-3">
+      <h4>投稿一覧</h4>
+    </div>
+  </div>
+
+
+    <div class = "row mt-3 mb-3">
+
+      <% @cars.each do |car| %>
+
+        <div class = "col-md-3">
+
+          <table class = "table table-borderless">
+            <thead>
+              <tr>
+                <th colspan="1"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+
+                <td><%= link_to (image_tag car.get_car_image(100,100)),admin_car_path(car.id) %><br>
+                <%= car.user.name %><br>
+
+                <% unless car.maker_id == 8 %>
+                  <%= car.maker.maker_name %>
+                  <% else %>
+                  <%= car.maker_comment %>
+                <% end %><br>
+
+                <% unless car.aero_maker_id == 8 %>
+                  <%= car.aero_maker.aero_maker_name %>
+                  <% else %>
+                  <%= car.aero_maker_comment %>
+                <% end %><br>
+
+                <%= car.car_model %></td>
+
+              </tr>
+
+             </tbody>
+          </table>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+    <!--<div class = "row mt-3 mb-3">-->
+
+    <!--  <%# @post_tags.each do |post_tag| %>-->
+
+    <!--    <div class = "col-md-3">-->
+
+    <!--      <table class = "table table-borderless">-->
+    <!--        <thead>-->
+    <!--          <tr>-->
+    <!--            <th colspan="1"></th>-->
+    <!--          </tr>-->
+    <!--        </thead>-->
+
+    <!--        <tbody>-->
+
+    <!--          <tr>-->
+
+    <!--            <td><%#= link_to (image_tag car.get_car_image(100,100)),car_path(car.id) %><br>-->
+    <!--            <%#= car.user.name %><br>-->
+
+    <!--            <%# unless car.maker_id == 8 %>-->
+    <!--              <%#= car.maker.maker_name %>-->
+    <!--              <%# else %>-->
+    <!--              <%#= car.maker_comment %>-->
+    <!--            <%# end %><br>-->
+
+    <!--            <%# unless car.aero_maker_id == 8 %>-->
+    <!--              <%#= car.aero_maker.aero_maker_name %>-->
+    <!--              <%# else %>-->
+    <!--              <%#= car.aero_maker_comment %>-->
+    <!--            <%# end %><br>-->
+
+    <!--            <%#= car.car_model %></td>-->
+
+    <!--          </tr>-->
+
+    <!--         </tbody>-->
+    <!--      </table>-->
+
+    <!--    </div>-->
+
+    <!--  <%# end %>-->
+
+    <!--</div>-->
+
+    <!--<div class = "row mt-3 mb-3">-->
+
+    <!--  <h1>Cars with tag: <%#= @tag.name %></h1>-->
+
+    <!--    <%# if @cars_with_tag.present? %>-->
+    <!--      <ul>-->
+    <!--        <%# @cars_with_tag.each do |car| %>-->
+    <!--          <li><%#= car.name %></li>-->
+    <!--        <%# end %>-->
+    <!--      </ul>-->
+    <!--    <%# else %>-->
+    <!--      <p>No cars found with tag <%#= @tag.name %></p>-->
+    <!--    <%# end %>-->
+
+
+    <!--</div>-->
+
+
+
+    <div class="d-flex justify-content-center">
+      <%#= paginate @cars, class: 'my-pagination' %>
+    </div>
+
+</div>
+
