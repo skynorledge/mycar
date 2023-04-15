@@ -1,7 +1,5 @@
 class HomesController < ApplicationController
-
   def top
-
     # if params[:maker_id] && params[:maker_id] != "8"
     #   @cars = Car.where(maker_id: params[:maker_id])
     # elsif params[:maker_id] == "8"
@@ -23,8 +21,5 @@ class HomesController < ApplicationController
     # if params[:search]
     #   @cars = @cars.where('name LIKE ?', "%#{params[:search]}%")
     # end
-
   end
-
-
 end

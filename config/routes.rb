@@ -26,8 +26,8 @@ Rails.application.routes.draw do
 
   scope module: :user do
 
-    #get '/post_user' => 'infos#post_user'
-    #get '/post_user/:id' => 'infos#post_user'
+    # get '/post_user' => 'infos#post_user'
+    # get '/post_user/:id' => 'infos#post_user'
     get '/mypage' => "infos#show"
     patch '/mypage' => 'infos#update'
     get '/info/edit' => "infos#edit"
@@ -43,6 +43,5 @@ Rails.application.routes.draw do
     end
 
   end
-
 
 end

@@ -67,8 +67,8 @@ end
 
 gem 'image_processing', '~> 1.2'
 
-#gem 'tzinfo-data'
+# gem 'tzinfo-data'
 
 gem 'acts_as_votable'
 
-gem 'kaminari','~> 1.2.1'
+gem 'kaminari', '~> 1.2.1'

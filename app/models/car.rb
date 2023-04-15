@@ -1,11 +1,10 @@
 class Car < ApplicationRecord
-
   has_one_attached :car_image
   has_one_attached :profile_image
 
-  #paginates_per 8
+  # paginates_per 8
 
-  #acts_as_votable
+  # acts_as_votable
 
   belongs_to :user
   belongs_to :maker
@@ -27,7 +26,7 @@ class Car < ApplicationRecord
     post_tags.where.not(tag_id: tag_ids).destroy_all
 
     tag_ids.each do |tag_id|
-      PostTag.find_or_create_by(car_id: id, tag_id: tag_id)
+      PostTag.find_or_create_by(car_id: id, tag_id:)
     end
   end
 
@@ -41,7 +40,6 @@ class Car < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       car_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-      car_image.variant(resize_to_limit: [width, height]).processed
+    car_image.variant(resize_to_limit: [width, height]).processed
   end
-
 end

@@ -1,5 +1,4 @@
 class User::LikesController < ApplicationController
-
   def create
     car = Car.find(params[:car_id])
     like = current_user.likes.new(car_id: car.id)
@@ -15,8 +14,6 @@ class User::LikesController < ApplicationController
   end
 
   def like_params
-    params.require(:like).permit(:user_id,:car_id)
+    params.require(:like).permit(:user_id, :car_id)
   end
-
-
 end
