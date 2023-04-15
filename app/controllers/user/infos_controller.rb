@@ -50,16 +50,15 @@ class User::InfosController < ApplicationController
 
     @user = current_user
     @user.update(user_params)
+    if @user.save
 
-    @user.save
-
-    #flash[:notice] = "会員情報を更新しました"
+    flash[:notice] = "会員情報を更新しました"
 
     redirect_to mypage_path
 
-    #else
-      #render :edit
-    #end
+    else
+      render :edit
+    end
 
   end
 
