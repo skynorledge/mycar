@@ -41,7 +41,6 @@
 
             <div class="card-body text-center">
 
-              <!--<h4 class="card-title">投稿詳細</h4>-->
               <p class="card-text"><%= image_tag @car.get_car_image(400,500) %></p>
               <p class="card-text">タイトル：<%= @car.title %></p>
               <p class="card-text"><%= @car.body %></p>
@@ -72,7 +71,6 @@
 
                 <p class="card-text">コメント件数：<%= @car.comments.count %></p>
                 <% @car.comments.each do |comment| %>
-                  <!--<p class="card-text"><%#= image_tag comment.user.get_profile_image(100,100) %></p>-->
                   <p class="card-text">
 
                     <% original_text = comment.comment_body %>
@@ -128,4 +126,3 @@
           </div>
 
         </div>
-            <%#= image_tag @car.user.get_profile_image(100,100) %>
