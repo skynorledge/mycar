@@ -15,7 +15,7 @@ class User::CarsController < ApplicationController
 
     elsif params[:search]
 
-      search_string = params[:search].tr('０-９ａ-ｚＡ-Ｚあ-んア-ケ', '0-9a-zA-Zぁ-んァ-ヶ').downcase
+      search_string = params[:search].gsub('０-９ａ-ｚＡ-Ｚあ-んア-ケ', '0-9a-zA-Zぁ-んァ-ヶ').downcase
 
       @cars = Car.joins(:maker, :aero_maker).where('LOWER(cars.title) LIKE ? OR LOWER(cars.body) LIKE ? OR LOWER(cars.car_model) LIKE ?
       OR LOWER(cars.maker_comment) LIKE ? OR LOWER(cars.aero_maker_comment) LIKE ?
