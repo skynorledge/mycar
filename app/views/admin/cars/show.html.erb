@@ -99,10 +99,10 @@
                     </script>
 
                     </p>
-                  <p class="card-text"><%= comment.user.name %>
+                  <p class="card-text"><%= comment.user.name %>｜
                   <%= link_to "削除", admin_car_comment_path(comment.car, comment), method: :delete,"data-confirm" =>"コメントを削除します、よろしいですか？" %>
                   </p>
-                  
+
                 <% end %>
 
               </div>
