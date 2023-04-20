@@ -2,6 +2,10 @@ class Car < ApplicationRecord
   has_one_attached :car_image
   has_one_attached :profile_image
 
+  # validates :car_model, format: { with: /\A[a-zA-Z0-9]+\z/, message: "は半角英数字で入力してください" }
+  # validates :_maker_comment, format: { with: /\A[a-zA-Z0-9]+\z/, message: "は半角英数字で入力してください" }
+  # validates :aero_maker_comment, format: { with: /\A[a-zA-Z0-9]+\z/, message: "は半角英数字で入力してください" }
+
   # paginates_per 8
 
   # acts_as_votable
