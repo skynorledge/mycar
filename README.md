@@ -12,8 +12,8 @@
 
 ### テーマを選んだ理由
 
-幼い頃から車が好きで2022年に念願の新車のスポーツカーを納車しました。  
-他の人がどんな「きっかけ」、「こだわり」を持っているか興味があり  
+幼い頃から車が好きで2022年に念願の新車のスポーツカーを納車しました。
+他の人がどんな「きっかけ」、「こだわり」を持っているか興味があり
 お互いに交流ができると便利だと思いこのテーマにしました。
 
 ### ターゲットユーザー
@@ -30,7 +30,9 @@
 - コメントを介して交流したい時
 
 ## 設計書
-<...>
+- 【ER図】https://drive.google.com/file/d/1uzcokcJTemYKtfHEaNi0A7gnsgrOo-0b/view?usp=sharing
+- 【テーブル定義書】https://docs.google.com/spreadsheets/d/1bkxCAMv2X9FBW7f5etyl6Q_LVCkYQyjgg-bLocMDFAU/edit?usp=sharing
+- 【テスト仕様書】https://docs.google.com/spreadsheets/d/1LSDoghDH-F0L6192eim0uU7_F8UHRwGz/edit?usp=sharing&ouid=104848923435184234200&rtpof=true&sd=true
 
 ## 実装機能リストURL
 
@@ -44,4 +46,4 @@ https://docs.google.com/spreadsheets/d/1b6X5jXjfktLqhqjsKL0ZtJMPfSenFX5wLyCLQGUG
 - IDE：Cloud9
 
 ## 使用素材
-- 使用検討中です
+- https://www.designevo.com/
