@@ -46,6 +46,7 @@ class User::CarsController < ApplicationController
   def show
     @car = Car.find(params[:id])
     @comment = Comment.new
+    @comments = @car.comments.page(params[:page]).per(5) # ページネーションを実装する
   end
 
   def new
