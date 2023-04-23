@@ -7,4 +7,13 @@ ja:
 ja:
   errors:
     messages:
-      not_saved: "保存できませんでした"
+      not_saved: "登録に失敗しました"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "このメールアドレスはすでに使用されています"
+            name:
+              taken: "このユーザー名はすでに使用されています"
