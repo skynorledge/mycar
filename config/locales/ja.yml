@@ -3,3 +3,8 @@ ja:
     formats:
       default: "%Y年%m月%d日 %H:%M"
       short: "%Y年%m月%d日"
+
+ja:
+  errors:
+    messages:
+      not_saved: "保存できませんでした"
