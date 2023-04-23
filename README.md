@@ -30,7 +30,7 @@
 - コメントを介して交流したい時
 
 ## 設計書
-- 【ER図】
+- 【ER図】https://drive.google.com/file/d/1uzcokcJTemYKtfHEaNi0A7gnsgrOo-0b/view?usp=sharing
 - 【テーブル定義書】https://docs.google.com/spreadsheets/d/1bkxCAMv2X9FBW7f5etyl6Q_LVCkYQyjgg-bLocMDFAU/edit?usp=sharing
 - 【テスト仕様書】https://docs.google.com/spreadsheets/d/1LSDoghDH-F0L6192eim0uU7_F8UHRwGz/edit?usp=sharing&ouid=104848923435184234200&rtpof=true&sd=true
 
